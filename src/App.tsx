@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { MDXEditor, headingsPlugin, listsPlugin, ListsToggle, quotePlugin,thematicBreakPlugin, toolbarPlugin, UndoRedo, BoldItalicUnderlineToggles, } from '@mdxeditor/editor'
+import '@mdxeditor/editor/style.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <MDXEditor markdown="# Hello world" plugins={
+    [
+      headingsPlugin(),
+      listsPlugin(),
+      quotePlugin(),
+      thematicBreakPlugin(),
+      toolbarPlugin(
+        {
+          toolbarContents: () => (
+            <>
+              {' '}
+              <UndoRedo />
+              <ListsToggle/>
+              <BoldItalicUnderlineToggles />
+            </>
+          )
+        }
+      )
+    ]
+  } />
 }
 
 export default App;
